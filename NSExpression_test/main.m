@@ -10,7 +10,8 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         NSExpression *expression = [NSExpression expressionWithFormat: @"%d*%f",3,3.5];
-        NSLog(@"%@",[expression expressionValueWithObject:nil context:nil]);
+        id v = [expression expressionValueWithObject:nil context:nil];
+        NSLog(@"%@, %@", v, [v className]);
         
         NSExpression *expression2 = [NSExpression expressionWithFormat: @"%f*%f" argumentArray:@[@3.4,@3.1]];
         NSLog(@"%@",[expression2 expressionValueWithObject:nil context:nil]);
