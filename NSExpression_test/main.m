@@ -9,8 +9,11 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        NSExpression *expression = [NSExpression expressionWithFormat: @"%d*%f",3,3.5];
+        NSLog(@"%@",[expression expressionValueWithObject:nil context:nil]);
+        
+        NSExpression *expression2 = [NSExpression expressionWithFormat: @"%f*%f" argumentArray:@[@3.4,@3.1]];
+        NSLog(@"%@",[expression2 expressionValueWithObject:nil context:nil]);
     }
     return 0;
 }
