@@ -34,6 +34,18 @@ int main(int argc, const char * argv[]) {
         
         NSExpression *expression6 = [NSExpression expressionForMinusSet:set1 with:set2];
         NSLog(@"%@",[expression6 expressionValueWithObject:nil context:nil]);
+        
+        // This should error out...
+        NS_DURING
+        {
+            NSExpression *expression7 = [NSExpression expressionForMinusSet:set1 with:expression2];
+            NSLog(@"%@",[expression7 expressionValueWithObject:nil context:nil]);
+        }
+        NS_HANDLER
+        {
+            NSLog(@"exception = %@", localException);
+        }
+        NS_ENDHANDLER;
     }
     return 0;
 }
