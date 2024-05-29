@@ -17,7 +17,8 @@ int main(int argc, const char * argv[]) {
         NSLog(@"%@",[expression2 expressionValueWithObject:nil context:nil]);
         
         NSExpression *expression3 = [NSExpression expressionForAggregate:[NSArray arrayWithObjects: expression, expression2, nil]];
-        NSLog(@"%@",[expression3 expressionValueWithObject:nil context:nil]);
+        id v2 = [expression3 expressionValueWithObject:nil context:nil];
+        NSLog(@"%@, %@", v2, [v2 className]);
         
         NSExpression *set1 = [NSExpression expressionForAggregate: [NSArray arrayWithObjects:
                                                                     [NSExpression expressionForConstantValue: @"A"],
@@ -28,10 +29,12 @@ int main(int argc, const char * argv[]) {
                                                                     [NSExpression expressionForConstantValue: @"D"],
                                                                     [NSExpression expressionForConstantValue: @"E"], nil]];
         NSExpression *expression4 = [NSExpression expressionForIntersectSet:set1 with:set2];
-        NSLog(@"%@",[expression4 expressionValueWithObject:nil context:nil]);
+        id v4 = [expression4 expressionValueWithObject:nil context:nil];
+        NSLog(@"%@, %@", v4, [v4 className]);
         
         NSExpression *expression5 = [NSExpression expressionForUnionSet:set1 with:set2];
-        NSLog(@"%@",[expression5 expressionValueWithObject:nil context:nil]);
+        id v5 = [expression5 expressionValueWithObject:nil context:nil];
+        NSLog(@"%@, %@, %ld", v5, [[v5 allObjects] objectAtIndex: 0], (unsigned long)[v5 count]);
         
         NSExpression *expression6 = [NSExpression expressionForMinusSet:set1 with:set2];
         NSLog(@"%@",[expression6 expressionValueWithObject:nil context:nil]);
