@@ -9,16 +9,17 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        NSMutableDictionary *context = [NSMutableDictionary dictionary];
         NSExpression *expression = [NSExpression expressionWithFormat: @"%d*%f",3,3.5];
-        id v = [expression expressionValueWithObject:nil context:nil];
-        NSLog(@"%@, %@", v, [v className]);
+        id v = [expression expressionValueWithObject:nil context:context];
+        NSLog(@"%@, %@ - %@", v, [v className], context);
         
         NSExpression *expression2 = [NSExpression expressionWithFormat: @"%f*%f" argumentArray:@[@3.4,@3.1]];
         NSLog(@"%@",[expression2 expressionValueWithObject:nil context:nil]);
         
         NSExpression *expression3 = [NSExpression expressionForAggregate:[NSArray arrayWithObjects: expression, expression2, nil]];
-        id v2 = [expression3 expressionValueWithObject:nil context:nil];
-        NSLog(@"%@, %@", v2, [v2 className]);
+        id v2 = [expression3 expressionValueWithObject:nil context:context];
+        NSLog(@"%@, %@ - %@", v2, [v2 className], context);
         
         NSExpression *set1 = [NSExpression expressionForAggregate: [NSArray arrayWithObjects:
                                                                     [NSExpression expressionForConstantValue: @"A"],
